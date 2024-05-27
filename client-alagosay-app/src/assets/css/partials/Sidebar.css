@@ -1,0 +1,55 @@
+.sidebars {
+    padding: 1rem;
+    min-width: 18%;
+    max-width: 18%;
+    background-color: var(--primaryAdm);
+    color: var(--color-font);
+    min-height: 100vh;
+    z-index: 99;
+}
+
+.sidebars .side .side-logo {
+    padding: 0 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid var(--color-font);
+}
+
+.sidebars .side .side-logo a {
+    width: 100%;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-font);
+}
+
+.sidebars .side .side-nav {
+    padding: 1rem 0;
+}
+
+.sidebars .side .side-nav ul {
+    padding: 0;
+}
+
+.sidebars .side .side-nav ul li {
+    margin: .5rem 0;
+    display: flex;
+}
+
+.sidebars .side .side-nav ul li a {
+    padding: .5rem 1rem;
+    width: 100%;
+    display: flex;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    background-color: var(--sidebar);
+    color: var(--color-font);
+}
+
+.sidebars .side .side-nav ul li a i {
+    margin: 0 .5rem 0 0;
+}

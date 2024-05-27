@@ -1,0 +1,171 @@
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--bg);
+}
+
+.body {
+    background-color: var(--bg);
+}
+
+.main {
+    width: 100%;
+}
+
+/* Content Session */
+.main .c7Nt .c7Nt7l {
+    padding: 2rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main .c7Nt .c7Nt7l h2 {
+    margin: 0;
+}
+
+.main .c7Nt .c7Nt7l h2,
+span {
+    font-family: "Poppins", sans-serif;
+}
+
+.main .c7Nt .c7Nt7l span {
+    display: flex;
+    align-items: center;
+}
+
+.main .c7Nt .c7Nt7l span a {
+    margin: 0 0 0 .3rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--t7l);
+}
+
+/* Card Dashboard Session */
+.main .c7Nt .c7Ntd45hx {
+    padding: 0 5% 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_ {
+    width: 30%;
+    background-color: rgb(5, 158, 172);
+    color: var(--color-font);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_:first-child {
+    background-color: rgb(216, 25, 25);
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_:last-child {
+    background-color: rgb(83, 0, 131);
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_ .d4Ca7l {
+    margin: 0 1rem;
+    padding: 1rem 0 .5rem;
+    border-bottom: 1px solid var(--color-font);
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_ .d4Ca7l p {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    font-size: .9rem;
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_ .d4Cam4 {
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_ .d4Cam4 .d4Cam41 h3 {
+    margin: 0;
+    padding: 0 0 0 1rem;
+    font-family: "Poppins", sans-serif;
+    font-size: 5rem;
+    font-weight: 600;
+    color: var(--color-font);
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_ .d4Cam4 .d4Cam41 p {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.1rem;
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_ .d4Cam4 .d4Cam42 i {
+    margin: 0;
+    font-size: 7rem;
+    color: rgba(255, 255, 255, .2);
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_ .d4Cac74 {
+    background-color: rgb(7, 128, 139);
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_:first-child .d4Cac74 {
+    background-color: rgb(184, 21, 21);
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_:last-child .d4Cac74 {
+    background-color: rgb(63, 0, 100);
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_ .d4Cac74:hover {
+    background-color: rgb(6, 108, 117);
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_:first-child .d4Cac74:hover {
+    background-color: rgb(158, 18, 18);
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_:last-child .d4Cac74:hover {
+    background-color: rgb(52, 0, 82);
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_ .d4Cac74 a {
+    padding: .5rem 1rem;
+    display: flex;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--color-font);
+}
+
+.main .c7Nt .c7Ntd45hx .c7Ntd4Ca_ .d4Cac74 a i {
+    margin: 0 0 0 .5rem;
+    font-size: 1.3rem;
+}
+
+/* Chart Session */
+.cH412t {
+    padding: 2rem 5%;
+}
+
+.cH412t canvas {
+    padding: 1rem;
+    background-color: var(--color-font);
+    border-radius: var(--border-radius);
+}
+
+/* Table Session */
+.main .c7Nt .c7Ntcx {
+    margin: 0 5%;
+    padding: 1rem;
+    background-color: var(--color-font);
+    border-radius: var(--border-radius);
+}
+
+.main .c7Nt .c7Ntcx .c7NtcxTl {
+    padding: 0 0 1rem;
+    border-bottom: 1px solid black;
+}
+
+.main .c7Nt .c7Ntcx .c7NtcxTl a {
+    font-family: "Poppins", sans-serif;
+}
