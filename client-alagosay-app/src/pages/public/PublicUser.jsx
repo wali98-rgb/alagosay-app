@@ -4,7 +4,6 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import './css/style.css'; // Ensure you adjust the path to your CSS file
 import 'animate.css';
 import './scss/bootstrap.scss';
-import WOW from 'wow.js'
 import AOS from 'aos';
 import 'aos/dist/aos.css'
 import $ from 'jquery';
@@ -29,7 +28,6 @@ const App = () => {
         spinner();
 
         // Initiate the wowjs
-        new WOW().init();
         AOS.init();
 
         // Fixed Navbar
@@ -58,7 +56,7 @@ const App = () => {
 
     }, []);
     return (
-        <>
+        <div style={{ overflow: 'hidden' }}>
             {/* Spinner Start */}
             <div id="spinner"
                 className="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -394,7 +392,7 @@ const App = () => {
             <a href="#" className="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top">
                 <i className="bi bi-arrow-up"></i></a>
 
-        </>
+        </div>
     );
 };
 
