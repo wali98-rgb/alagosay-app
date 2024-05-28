@@ -29,12 +29,16 @@ const DraggableModal = () => {
                     },
                     content: {
                         position: 'relative',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                         width: '100%',
                         height: '120%',
                         top: '-20%',
                         padding: '0',
                         border: 'none',
-                        background: 'none'
+                        background: 'none',
+                        zIndex: '9999',
 
                     },
                 }}
