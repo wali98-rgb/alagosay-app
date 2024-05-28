@@ -1,5 +1,13 @@
 const roleAccess = (userRole, endpoint) => {
-    if (endpoint === '/admin' || endpoint === '/product') {
+    // const allowedRoles = {
+    //     '/admin': ['admin', 'superadmin'],
+    //     '/product': ['admin', 'superadmin', 'user']
+    // }
+
+    // const allowedRolesForRoute = allowedRoles[route]
+
+    // return allowedRolesForRoute && allowedRolesForRoute.includes(userRole)
+    if (endpoint === '/product') {
         return true
     } else {
         return false

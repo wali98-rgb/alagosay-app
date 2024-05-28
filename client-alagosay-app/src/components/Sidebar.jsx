@@ -18,7 +18,7 @@ const Sidebar = () => {
                         </li>
 
                         <li>
-                            <Link to={'/4dm1n/menu'}><i className="bi bi-journal-richtext"></i>Menu</Link>
+                            <Link to={'/4dm1n/product'}><i className="bi bi-journal-richtext"></i>Produk</Link>
                         </li>
 
                         <li>
