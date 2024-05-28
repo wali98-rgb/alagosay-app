@@ -1,0 +1,15 @@
+.c7Ntcx .c7Ntcx13y .c7c0R {
+    padding: 1.5rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.c7Ntcx .c7Ntcx13y .c7c0R .c7c4R {
+    margin: .5rem;
+    padding: 1rem;
+    width: 60%;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 50px -15px silver;
+    box-sizing: border-box;
+}
