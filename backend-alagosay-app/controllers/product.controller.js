@@ -30,7 +30,7 @@ export const create = (req, res) => {
         try {
             await Product.create(newProduct, (err, data) => {
                 if (err) {
-                    res.status(500).send({ msg: "Exist some error" })
+                    // res.status(500).send({ msg: "Exist some error" })
                     return
                 }
             })

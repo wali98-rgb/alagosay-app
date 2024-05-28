@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import MainLayout from '../../../layouts/MainLayout'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -9,6 +9,12 @@ const AddProduct = () => {
     const [price, setPrice] = useState("")
     const [file, setFile] = useState("")
     const [preview, setPreview] = useState("")
+
+    // const photoRef = useRef()
+    // const flavorRef = useRef()
+    // const priceRef = useRef()
+    // const descRef = useRef()
+
     const navigate = useNavigate()
 
     const loadImage = (e) => {
@@ -17,20 +23,23 @@ const AddProduct = () => {
         setPreview(URL.createObjectURL(image))
     }
 
-    const createProduct = async (event) => {
-        event.preventDefault()
+    const createProduct = async (e) => {
+        e.preventDefault()
         const formData = new FormData()
-        formData.append("file", file)
+
+        formData.append("photo", file)
         formData.append("flavor", flavor)
+        formData.append("description", desc)
+        formData.append("price", price)
 
         try {
-            await axios.post("http//localhost:3001/product", formData, {
+            await axios.post("http://localhost:3001/product", formData, {
                 headers: {
                     "Content-type": "multipart/form-data",
                 },
             })
 
-            navigate("/")
+            navigate("/4dm1n/product")
         } catch (error) {
             console.log(error)
         }
@@ -49,29 +58,29 @@ const AddProduct = () => {
                         <form onSubmit={createProduct}>
                             {preview ? (
                                 <figure>
-                                    <img class="rounded mx-auto d-block" src={preview} alt="Preview Foto" />
+                                    <img className="rounded mx-auto d-block" src={preview} alt="Preview Foto" />
                                 </figure>
                             ) : (
                                 ""
                             )}
                             <div className="mb-3">
-                                <label for="formFile" className="form-label">Foto Moring :</label>
+                                <label htmlFor="formFile" className="form-label">Foto Moring :</label>
                                 <input className="form-control" type="file" id="formFile" onChange={loadImage} />
-                                <div id="emailHelp" class="form-text">Pilih file foto...</div>
+                                <div id="emailHelp" className="form-text">Pilih file foto...</div>
                             </div>
                             <div className="mb-3">
-                                <label for="InputFlavor" className="form-label">Rasa Moring :</label>
+                                <label htmlFor="InputFlavor" className="form-label">Rasa Moring :</label>
                                 <input type="text" className="form-control" id="InputFlavor" value={flavor} onChange={(e) => setFlavor(e.target.value)} placeholder="Masukkan rasa untuk moring..." />
                             </div>
                             <div className="mb-3">
-                                <label for="InputFlavor" className="form-label">Harga Moring :</label>
+                                <label htmlFor="InputFlavor" className="form-label">Harga Moring :</label>
                                 <input type="text" className="form-control" id="InputFlavor" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Harga moring..." />
                             </div>
                             <div className="mb-3">
-                                <label for="InputDescription" className="form-label">Deskripsikan Moring :</label>
+                                <label htmlFor="InputDescription" className="form-label">Deskripsikan Moring :</label>
                                 <textarea className="form-control" id="InputDescription" value={desc} onChange={(e) => setDesc(e.target.value)} placeholder="Deskripsi moring..." rows="3"></textarea>
                             </div>
-                            <button type="submit" className="btn btn-primary">Simpan</button>
+                            <button type='submit' className="btn btn-primary">Simpan</button>
                         </form>
                     </div>
                 </section>

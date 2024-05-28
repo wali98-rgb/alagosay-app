@@ -155,7 +155,7 @@ span {
 
 /* Table Session */
 .main .c7Nt .c7Ntcx {
-    margin: 0 5%;
+    margin: 0 5% 2rem;
     padding: 1rem;
     background-color: var(--color-font);
     border-radius: var(--border-radius);

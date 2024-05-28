@@ -35,14 +35,19 @@ const Product = () => {
                         <div className="c7c0R">
                             {
                                 product.map(item => (
-                                    <div className="c7c4R" style={{ width: '18rem' }} key={item.id}>
-                                        <img src={item.url} class="card-img-top" alt={item.photo} />
+                                    <div className="c7c4R card" style={{ width: '18rem' }} key={item.id}>
+                                        <div className="c7c4rIm p-2">
+                                            <img src={item.url} className="card-img-top" alt={item.photo} />
+                                        </div>
                                         <div className="card-body">
                                             <h5 className="card-title">{item.flavor}</h5>
                                             <h6 className="card-subtitle mb-2 text-body-secondary">Rp.{item.price}</h6>
                                             <p className="card-text">{item.description}</p>
-                                            <a href="#" className="card-link">Card link</a>
-                                            <a href="#" className="card-link">Another link</a>
+                                        </div>
+                                        <div className="card-footer d-flex justify-content-between">
+                                            <a href="#" className="col-3 mx-1 btn btn-success"><i className="bi bi-view-list"></i></a>
+                                            <a href="#" className="col-3 mx-1 btn btn-primary"><i className="bi bi-pencil-square"></i></a>
+                                            <a href="#" className="col-3 mx-1 btn btn-danger"><i className="bi bi-trash3"></i></a>
                                         </div>
                                     </div>
                                 ))

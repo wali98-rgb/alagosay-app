@@ -7,9 +7,22 @@
 
 .c7Ntcx .c7Ntcx13y .c7c0R .c7c4R {
     margin: .5rem;
-    padding: 1rem;
+    /* padding: 1rem; */
     width: 60%;
     border-radius: var(--border-radius);
     box-shadow: 0 5px 50px -15px silver;
     box-sizing: border-box;
+}
+
+.c7Ntcx .c7Ntcx13y .c7c0R .c7c4R .c7c4rIm {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 48.5%;
+}
+
+.c7Ntcx .c7Ntcx13y .c7c0R .c7c4R .c7c4rIm img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
