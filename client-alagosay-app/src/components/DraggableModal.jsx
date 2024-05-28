@@ -18,7 +18,7 @@ const DraggableModal = () => {
 
     return (
         <>
-            <button onClick={openModal} className='btn btn-primary ms-3'>Preview</button>
+            <button onClick={openModal} className='btn btn-primary me-3'>Preview</button>
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
