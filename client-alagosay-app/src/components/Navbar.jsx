@@ -8,7 +8,7 @@ const Navbar = () => {
         <nav className="n42r">
             <div className="n42r-fn4">
                 <button type='button' id='hamburger'><i className="bi bi-list"></i></button>
-                <h1>Dashboard Page</h1>
+                <h1>Admin Page Page</h1>
             </div>
 
             <div className="n42r-3xr">

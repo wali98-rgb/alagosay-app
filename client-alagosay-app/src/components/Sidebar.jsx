@@ -16,6 +16,9 @@ const Sidebar = () => {
                         <li>
                             <Link to={'/4dm1n/'}><i className="bi bi-house"></i>Dashboard</Link>
                         </li>
+                        <li>
+                            <Link to={'/4dm1n/Konten'}><i className="bi bi-newspaper"></i>Konten</Link>
+                        </li>
 
                         <li>
                             <Link to={'/4dm1n/product'}><i className="bi bi-journal-richtext"></i>Produk</Link>
