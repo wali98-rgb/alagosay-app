@@ -10,14 +10,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
+    "aos": "^3.0.0-beta.6",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.3",
     "cort": "^0.0.2",
+    "counterup2": "^2.0.2",
+    "jquery": "^3.7.1",
+    "node-sass": "^9.0.0",
+    "owl.carousel": "^2.3.4",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.23.1"
+    "react-router-dom": "^6.23.1",
+    "wow.js": "^1.2.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
@@ -27,6 +34,7 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "sass": "^1.77.2",
     "vite": "^5.2.0"
   }
 }
