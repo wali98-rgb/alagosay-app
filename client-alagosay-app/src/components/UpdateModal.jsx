@@ -37,12 +37,13 @@ const UpdateModal = ({ children }) => {
                         border: '1px solid #ccc',
                         borderRadius: '4px',
                         boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+
                     },
                 }}
             >
-                <h2>Update Data</h2>
+                <h2 className='d-flex justify-content-between'>Update Data <span><button onClick={closeModal} className='btn btn-danger'>X</button></span></h2>
                 {children}
-                <button onClick={closeModal} className='btn btn-danger'>Close</button>
+
             </Modal>
         </>
     );
