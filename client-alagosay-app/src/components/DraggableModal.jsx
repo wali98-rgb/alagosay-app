@@ -38,7 +38,7 @@ const DraggableModal = () => {
                         padding: '0',
                         border: 'none',
                         background: 'none',
-                        zIndex: '9999',
+                        zIndex: '0',
 
                     },
                 }}
@@ -50,6 +50,7 @@ const DraggableModal = () => {
                         height: '400px',
                         background: 'white',
                         borderRadius: '8px',
+                        zIndex: '99',
                         boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
                         cursor: 'move',
                     }}>

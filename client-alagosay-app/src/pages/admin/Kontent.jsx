@@ -15,15 +15,15 @@ const Konten = () => {
                     <span><DraggableModal /> / <Link to={'/4dm1n/Konten'}><i className="bi bi-newspaper"></i></Link></span>
                 </div>
 
-                <div className="p-3 card">
+                <div className="p-3 card z-0">
                     <h3 className='mb-3'>Kontak</h3>
                     <div className="row">
                         <div className="col-5">
-                            <div className="input-group mb-2">
+                            <div className="input-group z-1 mb-2">
                                 <label className='me-3 fs-5'>Email</label>
                                 <input type="email" className='form-control bg-white' value={'samlekom@mamang.com'} readOnly />
                             </div>
-                            <div className="input-group mb-2">
+                            <div className="input-group z-1 mb-2">
                                 <label className='me-3 fs-5'>WhatsApp</label>
                                 <input type="number" className='form-control bg-white' value={'6283896059029'} readOnly />
                             </div>
@@ -32,15 +32,15 @@ const Konten = () => {
                             <i className="bi bi-arrow-left-right fs-5"></i>
                         </div>
                         <div className="col-6">
-                            <div className="input-group mb-2">
+                            <div className="input-group z-1 mb-2">
                                 <span class="input-group-text">@</span>
                                 <input type="number" className='form-control bg-white' />
-                                <button className='btn btn-warning ms-3 me-5'>Update</button>
+                                <button className='btn btn-primary ms-3 me-5'>Update</button>
                             </div>
-                            <div className="input-group mb-2">
-                                <span class="input-group-text" >+62</span>
+                            <div className="input-group z-1 mb-2">
+                                <span class="input-group-text " >+62</span>
                                 <input type="number" className='form-control bg-white' />
-                                <button className='btn btn-warning ms-3 me-5'>Update</button>
+                                <button className='btn btn-primary ms-3 me-5'>Update</button>
                             </div>
                         </div>
                     </div>
@@ -102,17 +102,17 @@ const Konten = () => {
                     <h3 className='mt-5 mb-3'>Facts</h3>
                     <div className="row">
                         <div className="col-5">
-                            <div className="input-group mb-2">
+                            <div className="input-group z-1 mb-2">
                                 <label className='me-3 fs-5'>Hadir Sejak</label>
                                 <input type="number" className='form-control bg-white' value={10} readOnly />
                                 <span class="input-group-text" >Tahun</span>
                             </div>
-                            <div className="input-group mb-2">
+                            <div className="input-group z-1 mb-2">
                                 <label className='me-3 fs-5'>Dinikmati Oleh</label>
                                 <input type="number" className='form-control bg-white' value={17500} readOnly />
                                 <span class="input-group-text" >Orang</span>
                             </div>
-                            <div className="input-group mb-2">
+                            <div className="input-group z-1 mb-2">
                                 <label className='me-3 fs-5'>Jumlah Penjualan</label>
                                 <input type="number" className='form-control bg-white' value={9357} readOnly />
                                 <span class="input-group-text" >produk</span>
@@ -122,20 +122,20 @@ const Konten = () => {
                             <i className="bi bi-arrow-left-right fs-5"></i>
                         </div>
                         <div className="col-6">
-                            <div className="input-group mb-2">
+                            <div className="input-group z-1 mb-2">
                                 <input type="number" className='form-control bg-white' value={10} />
                                 <span class="input-group-text" >Tahun</span>
-                                <button className='btn btn-warning ms-3 me-5'>Update</button>
+                                <button className='btn btn-primary ms-3 me-5'>Update</button>
                             </div>
-                            <div className="input-group mb-2">
+                            <div className="input-group z-1 mb-2">
                                 <input type="number" className='form-control bg-white' value={17500} />
                                 <span class="input-group-text" >Orang</span>
-                                <button className='btn btn-warning ms-3 me-5'>Update</button>
+                                <button className='btn btn-primary ms-3 me-5'>Update</button>
                             </div>
-                            <div className="input-group mb-2">
+                            <div className="input-group z-1 mb-2">
                                 <input type="number" className='form-control bg-white' value={9357} />
                                 <span class="input-group-text" >produk</span>
-                                <button className='btn btn-warning ms-3 me-5'>Update</button>
+                                <button className='btn btn-primary ms-3 me-5'>Update</button>
                             </div>
                         </div>
                     </div>
@@ -171,15 +171,15 @@ const Konten = () => {
                             <i className="bi bi-arrow-left-right fs-5"></i>
                         </div>
                         <div className="col-6">
-                            <div className="form-floating input-group mb-2">
+                            <div className="form-floating input-group z-1 mb-2">
                                 <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: '50px' }}></textarea>
                                 <label for="floatingTextarea2">Title</label>
-                                <button className='btn btn-warning ms-3 me-5'>Update</button>
+                                <button className='btn btn-primary ms-3 me-5'>Update</button>
                             </div>
-                            <div className="form-floating input-group mb-2">
+                            <div className="form-floating input-group z-1 mb-2">
                                 <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: '150px' }}></textarea>
                                 <label for="floatingTextarea2">Subtitle</label>
-                                <button className='btn btn-warning ms-3 me-5'>Update</button>
+                                <button className='btn btn-primary ms-3 me-5'>Update</button>
                             </div>
                             <div class="mb-3">
                                 <label for="gambar" class="form-label">gambar</label>
@@ -197,10 +197,10 @@ const Konten = () => {
                             <i className="bi bi-arrow-left-right fs-5"></i>
                         </div>
                         <div className="col-6">
-                            <div className="form-floating input-group mb-2">
-                                <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: '50px' }}></textarea>
+                            <div className="form-floating input-group z-1 mb-2">
                                 <label for="floatingTextarea2">Title</label>
-                                <button className='btn btn-warning ms-3 me-5'>Update</button>
+                                <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: '50px' }}></textarea>
+                                <button className='btn btn-primary ms-3 me-5'>Update</button>
                             </div>
                         </div>
                     </div>
