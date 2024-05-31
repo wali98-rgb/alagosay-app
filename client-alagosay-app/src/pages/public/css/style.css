@@ -425,5 +425,6 @@ h6,
 }
 
 .img-c {
+    filter: grayscale(80%);
     filter: blur(8px);
 }

@@ -16,35 +16,7 @@ const Konten = () => {
                 </div>
 
                 <div className="p-3 card z-0">
-                    <h3 className='mb-3'>Kontak</h3>
-                    <div className="row">
-                        <div className="col-5">
-                            <div className="input-group z-1 mb-2">
-                                <label className='me-3 fs-5'>Email</label>
-                                <input type="email" className='form-control bg-white' value={'samlekom@mamang.com'} readOnly />
-                            </div>
-                            <div className="input-group z-1 mb-2">
-                                <label className='me-3 fs-5'>WhatsApp</label>
-                                <input type="number" className='form-control bg-white' value={'6283896059029'} readOnly />
-                            </div>
-                        </div>
-                        <div className="col-1 text-center">
-                            <i className="bi bi-arrow-left-right fs-5"></i>
-                        </div>
-                        <div className="col-6">
-                            <div className="input-group z-1 mb-2">
-                                <span class="input-group-text">@</span>
-                                <input type="number" className='form-control bg-white' />
-                                <button className='btn btn-primary ms-3 me-5'>Update</button>
-                            </div>
-                            <div className="input-group z-1 mb-2">
-                                <span class="input-group-text " >+62</span>
-                                <input type="number" className='form-control bg-white' />
-                                <button className='btn btn-primary ms-3 me-5'>Update</button>
-                            </div>
-                        </div>
-                    </div>
-                    <h3 className='d-flex justify-content-between mt-5'>Carousel
+                    <h3 className='d-flex justify-content-between'>Carousel
                         <span>
                             <button className='btn btn-success'>tambah</button>
                         </span>

@@ -6,6 +6,8 @@ import Konten from './pages/admin/Kontent'
 import PublicUser from './pages/public/PublicUser'
 import Product from './pages/admin/produk/Product'
 import AddProduct from './pages/admin/produk/AddProduct'
+import Kontak from './pages/admin/Kontak'
+import About from './pages/admin/About'
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path='/4dm1n/product' element={<Product />} />
         <Route path='/4dm1n/product/add' element={<AddProduct />} />
         <Route path='/4dm1n/konten' element={<Konten />} />
+        <Route path='/4dm1n/Kontak' element={<Kontak />} />
+        <Route path='/4dm1n/About' element={<About />} />
       </Routes>
     </>
   )
