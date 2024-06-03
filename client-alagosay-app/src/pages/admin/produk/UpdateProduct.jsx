@@ -1,21 +1,36 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import MainLayout from '../../../layouts/MainLayout'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 
-const AddProduct = () => {
+const UpdateProduct = () => {
     const [flavor, setFlavor] = useState("")
     const [desc, setDesc] = useState("")
     const [price, setPrice] = useState("")
     const [file, setFile] = useState("")
     const [preview, setPreview] = useState("")
 
+    const { id } = useParams()
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        getProductById()
+    }, [])
+
+    const getProductById = async () => {
+        const response = await axios.get(`http://localhost:3001/product/${id}`)
+        setFile(response.data.photo)
+        setFlavor(response.data.flavor)
+        setPrice(response.data.price)
+        setDesc(response.data.description)
+        setPreview(response.data.url)
+    }
+
     // const photoRef = useRef()
     // const flavorRef = useRef()
     // const priceRef = useRef()
     // const descRef = useRef()
-
-    const navigate = useNavigate()
 
     const loadImage = (e) => {
         const image = e.target.files[0]
@@ -23,7 +38,7 @@ const AddProduct = () => {
         setPreview(URL.createObjectURL(image))
     }
 
-    const createProduct = async (e) => {
+    const updateProduct = async (e) => {
         e.preventDefault()
         const formData = new FormData()
 
@@ -33,7 +48,7 @@ const AddProduct = () => {
         formData.append("price", price)
 
         try {
-            await axios.post("http://localhost:3001/product", formData, {
+            await axios.put(`http://localhost:3001/product/${id}`, formData, {
                 headers: {
                     "Content-type": "multipart/form-data",
                 },
@@ -55,7 +70,7 @@ const AddProduct = () => {
                     </div>
 
                     <div className="c7Ntcx">
-                        <form onSubmit={createProduct}>
+                        <form onSubmit={updateProduct}>
                             {preview ? (
                                 <figure>
                                     <img className="rounded mx-auto d-block" src={preview} alt="Preview Foto" />
@@ -65,7 +80,7 @@ const AddProduct = () => {
                             )}
                             <div className="mb-3">
                                 <label htmlFor="formFile" className="form-label">Foto Moring :</label>
-                                <input className="form-control" type="file" id="formFile" onChange={loadImage} />
+                                <input className="form-control" type="file" id="formFile" onChange={loadImage} required />
                                 <div id="emailHelp" className="form-text">Pilih file foto...</div>
                             </div>
                             <div className="mb-3">
@@ -80,7 +95,7 @@ const AddProduct = () => {
                                 <label htmlFor="InputDescription" className="form-label">Deskripsikan Moring :</label>
                                 <textarea className="form-control" id="InputDescription" value={desc} onChange={(e) => setDesc(e.target.value)} placeholder="Deskripsi moring..." rows="3"></textarea>
                             </div>
-                            <button type='submit' className="btn btn-primary">Simpan</button>
+                            <button type='submit' className="btn btn-primary">Edit</button>
                             <Link to={'/4dm1n/product'} type='submit' className="btn btn-danger mx-2">Kembali</Link>
                         </form>
                     </div>
@@ -90,4 +105,4 @@ const AddProduct = () => {
     )
 }
 
-export default AddProduct
+export default UpdateProduct

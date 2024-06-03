@@ -18,6 +18,15 @@ const Product = () => {
         setProduct(response.data)
     }
 
+    const deleteProduct = async (productId) => {
+        try {
+            await axios.delete(`http://localhost:3001/product/${productId}`)
+            getProducts()
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <MainLayout>
             <section className="c7Nt">
@@ -45,9 +54,9 @@ const Product = () => {
                                             <p className="card-text">{item.description}</p>
                                         </div>
                                         <div className="card-footer d-flex justify-content-between">
-                                            <a href="#" className="col-3 mx-1 btn btn-success"><i className="bi bi-view-list"></i></a>
-                                            <a href="#" className="col-3 mx-1 btn btn-primary"><i className="bi bi-pencil-square"></i></a>
-                                            <a href="#" className="col-3 mx-1 btn btn-danger"><i className="bi bi-trash3"></i></a>
+                                            <Link to={`/4dm1n/product/show/${item.id}`} className="col-3 mx-1 btn btn-success"><i className="bi bi-view-list"></i></Link>
+                                            <Link to={`/4dm1n/product/edit/${item.id}`} className="col-3 mx-1 btn btn-primary"><i className="bi bi-pencil-square"></i></Link>
+                                            <a onClick={() => deleteProduct(item.id)} className="col-3 mx-1 btn btn-danger"><i className="bi bi-trash3"></i></a>
                                         </div>
                                     </div>
                                 ))
