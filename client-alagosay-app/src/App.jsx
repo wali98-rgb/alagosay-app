@@ -8,6 +8,8 @@ import Product from './pages/admin/produk/Product'
 import AddProduct from './pages/admin/produk/AddProduct'
 import UpdateProduct from './pages/admin/produk/UpdateProduct'
 import ShowProduct from './pages/admin/produk/ShowProduct'
+import Kontak from './pages/admin/Kontak'
+import About from './pages/admin/About'
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path='/4dm1n/product/edit/:id' element={<UpdateProduct />} />
         <Route path='/4dm1n/product/show/:id' element={<ShowProduct />} />
         <Route path='/4dm1n/konten' element={<Konten />} />
+        <Route path='/4dm1n/Kontak' element={<Kontak />} />
+        <Route path='/4dm1n/About' element={<About />} />
       </Routes>
     </>
   )

@@ -25,7 +25,7 @@ const Sidebar = () => {
                         </li>
 
                         <li>
-                            <Link to={'/4dm1n/contact'}><i className="bi bi-telephone"></i>Kontak</Link>
+                            <Link to={'/4dm1n/Kontak'}><i className="bi bi-telephone"></i>Kontak</Link>
                         </li>
 
                         <li>
