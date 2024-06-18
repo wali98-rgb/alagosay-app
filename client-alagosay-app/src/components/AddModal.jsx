@@ -1,17 +1,27 @@
-// SimpleModal.js
-import React, { useState } from 'react';
-import Modal from 'react-modal';
+import React, { useState } from 'react'
+import Modal from 'react-modal'
 
-Modal.setAppElement('#root'); // ini untuk aksesibilitas
+Modal.setAppElement('#root');
 
-const UpdateModal = ({ children, modalIsOpen, closeModal }) => {
+const AddModal = ({ children }) => {
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = () => {
+        setModalIsOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    }
+
     return (
         <>
-            {/* <button className='btn btn-primary' onClick={openModal}>Update</button> */}
+            <button className='btn btn-success' onClick={openModal}>Tambah</button>
             <Modal
+                closeModal={closeModal}
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
-                contentLabel="Example Modal"
+                contentLabel="Add Modal"
                 style={{
                     overlay: {
                         backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -32,12 +42,11 @@ const UpdateModal = ({ children, modalIsOpen, closeModal }) => {
                     },
                 }}
             >
-                <h2 className='d-flex justify-content-between'>Update Data <span><button onClick={closeModal} className='btn btn-danger'>X</button></span></h2>
+                <h2 className='d-flex justify-content-between'>Tambah Carousel <span><button onClick={closeModal} className='btn btn-danger'>X</button></span></h2>
                 {children}
-
             </Modal>
         </>
-    );
-};
+    )
+}
 
-export default UpdateModal;
+export default AddModal

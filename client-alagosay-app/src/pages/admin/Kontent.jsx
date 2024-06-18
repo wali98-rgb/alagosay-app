@@ -1,12 +1,104 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import UpdateModal from '../../components/UpdateModal'
 import MainLayout from '../../layouts/MainLayout'
 import 'bootstrap'
 import '../../assets/css/pages/Home.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import DraggableModal from '../../components/DraggableModal';
+import AddModal from '../../components/AddModal'
+import axios from 'axios'
+import UpdateCarousel from './carousel/UpdateCarousel'
+// import imgCarousel from '../../../../backend-alagosay-app/public/images/Carousel/'
 
 const Konten = () => {
+    const [tagContent, setTagContent] = useState("")
+    const [titleContent, setTitleContent] = useState("")
+    const [subtitleContent, setSubtitleContent] = useState("")
+    const [file, setFile] = useState("")
+    const [preview, setPreview] = useState("")
+    const [carousel, setCarousel] = useState([])
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = () => {
+        setModalIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    };
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        getCarousels()
+    }, [])
+
+    const getCarousels = async () => {
+        const response = await axios.get("http://localhost:3001/content")
+        setCarousel(response.data)
+    }
+
+    const loadImageCarousel = (e) => {
+        const image = e.target.files[0]
+        setFile(image)
+        setPreview(URL.createObjectURL(image))
+    }
+
+    const createCarousel = async (e) => {
+        e.preventDefault()
+        const formData = new FormData()
+
+        formData.append("img_content", file)
+        formData.append("tag_content", tagContent)
+        formData.append("title_content", titleContent)
+        formData.append("subtitle_content", subtitleContent)
+
+        try {
+            await axios.post("http://localhost:3001/content", formData, {
+                headers: {
+                    "Content-type": "multipart/form-data",
+                },
+            })
+
+            navigate("/4dm1n/konten")
+            closeModal()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const updateCarousel = async (e, carouselId) => {
+        e.preventDefault()
+        const formData = new FormData()
+
+        formData.append("img_content", file)
+        formData.append("tag_content", tagContent)
+        formData.append("title_content", titleContent)
+        formData.append("subtitle_content", subtitleContent)
+
+        try {
+            await axios.put(`http://localhost:3001/content/${carouselId}`, formData, {
+                headers: {
+                    "Content-type": "multipart/form-data",
+                },
+            })
+
+            navigate("/4dm1n/konten")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteCarousel = async (carouselId) => {
+        try {
+            await axios.delete(`http://localhost:3001/content/${carouselId}`)
+            getCarousels()
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <MainLayout>
             <section className="c7Nt m-3">
@@ -18,57 +110,122 @@ const Konten = () => {
                 <div className="p-3 card z-0">
                     <h3 className='d-flex justify-content-between'>Carousel
                         <span>
-                            <button className='btn btn-success'>tambah</button>
+                            <AddModal>
+                                <form onSubmit={createCarousel}>
+                                    <div className="mb-3">
+                                        <label htmlHtmlhtmlFor="InputTag" className="form-label">Tag :</label>
+                                        <input type="text" className="form-control" id="InputTag" value={tagContent} onChange={(e) => setTagContent(e.target.value)} placeholder="Masukkan tag carousel..." />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlHtmlhtmlFor="InputTitle" className="form-label">Title :</label>
+                                        <input type="text" className="form-control" id="InputTitle" value={titleContent} onChange={(e) => setTitleContent(e.target.value)} placeholder="Masukkan title carousel..." />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlHtmlhtmlFor="InputSubtitle" className="form-label">Subtitle :</label>
+                                        <input type="text" className="form-control" id="InputSubtitle" value={subtitleContent} onChange={(e) => setSubtitleContent(e.target.value)} placeholder="Masukkan subtitle carousel..." />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlHtmlhtmlFor="formFile" className="form-label">Foto Carousel :</label>
+                                        <input className="form-control" type="file" id="formFile" onChange={loadImageCarousel} />
+                                        <div id="emailHelp" className="form-text">Pilih file foto...</div>
+                                    </div>
+                                    {preview ? (
+                                        <figure>
+                                            <img width={'50%'} className="rounded mx-auto d-block" src={preview} alt="Preview Foto" />
+                                        </figure>
+                                    ) : (
+                                        ""
+                                    )}
+                                    <button type='submit' className="btn btn-primary">Simpan</button>
+                                </form>
+                            </AddModal>
                         </span>
                     </h3>
 
                     <table className='table table-bordered'>
                         <tr className='bg-success text-light'>
-                            <td>NO</td>
-                            <td>tag</td>
+                            <td width={'40rem'}>NO</td>
+                            <td>Tag</td>
                             <td>Title</td>
-                            <td>subtitle</td>
+                            <td>Subtitle</td>
                             <td>Gambar</td>
-                            <td>Menu</td>
+                            <td>Aksi</td>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>// Moring Kekinian</td>
-                            <td>Buat Santaimu Lebih Asik</td>
-                            <td>Moring ini hadir sebagai cemilan yang menemanimu dikala lagi santai</td>
-                            <td>carousel-1.jpg</td>
-                            <td>
-                                <span className='btn-group'>
-                                    <UpdateModal>
-                                        <form>
-                                            <div class="mb-3">
-                                                <label for="tag" class="form-label">Tag</label>
-                                                <input type="text" class="form-control" id="tag" />
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="title" class="form-label">title</label>
-                                                <input type="text" class="form-control" id="title" />
-                                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="subtitle" class="form-label">subtitle</label>
-                                                <input type="text" class="form-control" id="subtitle" />
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="gambar" class="form-label">gambar</label>
-                                                <input type="file" class="form-control" id="gambar" />
-                                            </div>
-                                            <div class="mb-3 form-check">
-                                                <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                                                <label class="form-check-label" for="exampleCheck1">Apakah anda Yakin</label>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                        </form>
-                                    </UpdateModal>
-                                    <button className='btn btn-danger'>Delete</button>
-                                </span>
-                            </td>
-                        </tr>
+                        {
+                            carousel.map((carousel, index) => (
+                                <tr key={carousel.id}>
+                                    <td>{index + 1}</td>
+                                    <td>{carousel.tag_content}</td>
+                                    <td>{carousel.title_content}</td>
+                                    <td>{carousel.subtitle_content}</td>
+                                    <td>
+                                        <img
+                                            style={{
+                                                width: '100%',
+                                                height: '5rem',
+                                                objectFit: 'contain'
+                                            }}
+                                            src={carousel.url}
+                                            alt={carousel.title_content}
+                                        />
+                                    </td>
+                                    <td>
+                                        <span className='btn-group'>
+                                            <button onClick={openModal} className='btn btn-primary'>
+                                                <button
+                                                    onClick={() => updateCarousel(carousel.id)}
+                                                    style={{
+                                                        border: 'none',
+                                                        backgroundColor: 'var(--primary)',
+                                                        color: 'white'
+                                                    }}
+                                                >
+                                                    Update
+                                                </button>
+                                            </button>
+                                            <UpdateModal
+                                                modalIsOpen={modalIsOpen}
+                                                openModal={openModal}
+                                                closeModal={closeModal}
+                                            >
+                                                <form onSubmit={updateCarousel(carousel.id)}>
+                                                    <div className="mb-3">
+                                                        <label htmlFor="tag" className="form-label">Tag :</label>
+                                                        <input type="text" className="form-control" value={carousel.tag_content} id="tag" />
+                                                    </div>
+                                                    <div className="mb-3">
+                                                        <label htmlFor="title" className="form-label">Title :</label>
+                                                        <input type="text" className="form-control" value={carousel.title_content} id="title" />
+                                                        <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                                                    </div>
+                                                    <div className="mb-3">
+                                                        <label htmlFor="subtitle" className="form-label">Subtitle :</label>
+                                                        <input type="text" className="form-control" value={carousel.subtitle_content} id="subtitle" />
+                                                    </div>
+                                                    <div className="mb-3">
+                                                        <label htmlFor="gambar" className="form-label">Foto Carousel :</label>
+                                                        <input type="file" className="form-control" id="gambar" onChange={loadImageCarousel} required />
+                                                    </div>
+                                                    {preview ? (
+                                                        <figure>
+                                                            <img width={'50%'} className="rounded mx-auto d-block" src={preview} alt="Preview Foto" />
+                                                        </figure>
+                                                    ) : (
+                                                        ""
+                                                    )}
+                                                    {/* <div className="mb-3 form-check">
+                                                        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                                                        <label className="form-check-label" htmlFor="exampleCheck1">Apakah anda Yakin</label>
+                                                    </div> */}
+                                                    <button type="submit" className="btn btn-primary">Update</button>
+                                                </form>
+                                            </UpdateModal>
+                                            <button onClick={() => deleteCarousel(carousel.id)} className='btn btn-danger'>Delete</button>
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))
+                        }
                     </table>
 
                     <h3 className='mt-5 mb-3'>Facts</h3>
@@ -77,17 +234,17 @@ const Konten = () => {
                             <div className="input-group z-1 mb-2">
                                 <label className='me-3 fs-5'>Hadir Sejak</label>
                                 <input type="number" className='form-control bg-white' value={10} readOnly />
-                                <span class="input-group-text" >Tahun</span>
+                                <span className="input-group-text" >Tahun</span>
                             </div>
                             <div className="input-group z-1 mb-2">
                                 <label className='me-3 fs-5'>Dinikmati Oleh</label>
                                 <input type="number" className='form-control bg-white' value={17500} readOnly />
-                                <span class="input-group-text" >Orang</span>
+                                <span className="input-group-text" >Orang</span>
                             </div>
                             <div className="input-group z-1 mb-2">
                                 <label className='me-3 fs-5'>Jumlah Penjualan</label>
                                 <input type="number" className='form-control bg-white' value={9357} readOnly />
-                                <span class="input-group-text" >produk</span>
+                                <span className="input-group-text" >produk</span>
                             </div>
                         </div>
                         <div className="col-1 text-center">
@@ -96,17 +253,17 @@ const Konten = () => {
                         <div className="col-6">
                             <div className="input-group z-1 mb-2">
                                 <input type="number" className='form-control bg-white' value={10} />
-                                <span class="input-group-text" >Tahun</span>
+                                <span className="input-group-text" >Tahun</span>
                                 <button className='btn btn-primary ms-3 me-5'>Update</button>
                             </div>
                             <div className="input-group z-1 mb-2">
                                 <input type="number" className='form-control bg-white' value={17500} />
-                                <span class="input-group-text" >Orang</span>
+                                <span className="input-group-text" >Orang</span>
                                 <button className='btn btn-primary ms-3 me-5'>Update</button>
                             </div>
                             <div className="input-group z-1 mb-2">
                                 <input type="number" className='form-control bg-white' value={9357} />
-                                <span class="input-group-text" >produk</span>
+                                <span className="input-group-text" >produk</span>
                                 <button className='btn btn-primary ms-3 me-5'>Update</button>
                             </div>
                         </div>
@@ -145,18 +302,18 @@ const Konten = () => {
                         <div className="col-6">
                             <div className="form-floating input-group z-1 mb-2">
                                 <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: '50px' }}></textarea>
-                                <label for="floatingTextarea2">Title</label>
+                                <label htmlFor="floatingTextarea2">Title</label>
                                 <button className='btn btn-primary ms-3 me-5'>Update</button>
                             </div>
                             <div className="form-floating input-group z-1 mb-2">
                                 <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: '150px' }}></textarea>
-                                <label for="floatingTextarea2">Subtitle</label>
+                                <label htmlFor="floatingTextarea2">Subtitle</label>
                                 <button className='btn btn-primary ms-3 me-5'>Update</button>
                             </div>
-                            <div class="mb-3">
-                                <label for="gambar" class="form-label">gambar</label>
-                                <input type="file" class="form-control mb-2 me-5" id="gambar1" />
-                                <input type="file" class="form-control me-5" id="gambar2" />
+                            <div className="mb-3">
+                                <label htmlFor="gambar" className="form-label">gambar</label>
+                                <input type="file" className="form-control mb-2 me-5" id="gambar1" />
+                                <input type="file" className="form-control me-5" id="gambar2" />
                             </div>
                         </div>
                     </div>
@@ -170,7 +327,7 @@ const Konten = () => {
                         </div>
                         <div className="col-6">
                             <div className="form-floating input-group z-1 mb-2">
-                                <label for="floatingTextarea2">Title</label>
+                                <label htmlFor="floatingTextarea2">Title</label>
                                 <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: '50px' }}></textarea>
                                 <button className='btn btn-primary ms-3 me-5'>Update</button>
                             </div>
@@ -199,19 +356,19 @@ const Konten = () => {
                                 <span className='btn-group'>
                                     <UpdateModal>
                                         <form>
-                                            <div class="mb-3">
-                                                <label for="tag" class="form-label">Testimoni</label>
-                                                <input type="text" class="form-control" id="tag" />
+                                            <div className="mb-3">
+                                                <label htmlFor="tag" className="form-label">Testimoni</label>
+                                                <input type="text" className="form-control" id="tag" />
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="gambar" class="form-label">gambar</label>
-                                                <input type="file" class="form-control" id="gambar" />
+                                            <div className="mb-3">
+                                                <label htmlFor="gambar" className="form-label">gambar</label>
+                                                <input type="file" className="form-control" id="gambar" />
                                             </div>
-                                            <div class="mb-3 form-check">
-                                                <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                                                <label class="form-check-label" for="exampleCheck1">Apakah anda Yakin</label>
+                                            <div className="mb-3 form-check">
+                                                <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                                                <label className="form-check-label" htmlFor="exampleCheck1">Apakah anda Yakin</label>
                                             </div>
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="submit" className="btn btn-primary">Submit</button>
                                         </form>
                                     </UpdateModal>
                                     <button className='btn btn-danger'>Delete</button>
@@ -222,7 +379,7 @@ const Konten = () => {
 
                 </div>
             </section>
-        </MainLayout>
+        </MainLayout >
     )
 }
 
