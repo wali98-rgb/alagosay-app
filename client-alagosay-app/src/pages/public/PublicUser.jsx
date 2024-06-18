@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './css/style.css'; // Ensure you adjust the path to your CSS file
@@ -6,7 +6,7 @@ import 'animate.css';
 import './scss/bootstrap.scss';
 import AOS from 'aos';
 import 'aos/dist/aos.css'
-import $ from 'jquery';
+import $, { get } from 'jquery';
 // gambar
 import GC_1 from './img/carousel-1.jpg'
 import GC_2 from './img/carousel-2.jpg'
@@ -14,8 +14,20 @@ import Ab1 from './img/about-1.jpg'
 import Ab2 from './img/about-2.jpg'
 import GP1 from './img/product-1.jpg'
 import GP2 from './img/product-2.jpg'
+import axios from 'axios';
 
 const App = () => {
+    const [product, setProduct] = useState([])
+
+    useEffect(() => {
+        getProducts()
+    }, [])
+
+    const getProducts = async () => {
+        const response = await axios.get("http://localhost:3001/product")
+        setProduct(response.data)
+    }
+
     useEffect(() => {
         // Spinner
         const spinner = () => {
@@ -243,38 +255,35 @@ const App = () => {
                         <h1 className="display-6 mb-4">Cobalah sekarang dan nikmati sensasi baru yang menggugah selera Anda</h1>
                     </div>
                     <div className="row g-4 d-flex justify-content-center">
-                        <div className="col-lg-4 col-md-6" data-aos="zoom-in-up">
-                            <div className="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
-                                <div className="text-center p-4">
-                                    <div className="d-inline-block border border-primary rounded-pill px-3 mb-3">Rp. 15.000</div>
-                                    <h3 className="mb-3">Original</h3>
-                                    <span>mempersembahkan kegurihan rasa yang khas dari Alagosay</span>
-                                </div>
-                                <div className="position-relative mt-auto">
-                                    <img className="img-fluid" src={GP1} alt="" />
-                                    <div className="product-overlay">
-                                        <a className="btn btn-lg-square btn-outline-light rounded-circle" href=""><i
-                                            className="fa fa-eye text-primary"></i></a>
+                        {
+                            product.map(item => (
+                                <div className="col-lg-4 col-md-6" data-aos="zoom-in-up" key={item.id}>
+                                    <div className="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
+                                        <div className="text-center p-4">
+                                            <div className="d-inline-block border border-primary rounded-pill px-3 mb-3">Rp. {item.price}</div>
+                                            <h3 className="mb-3">{item.flavor}</h3>
+                                            <span>{item.description}</span>
+                                        </div>
+                                        <div className="position-relative mt-auto">
+                                            <img
+                                                style={{
+                                                    width: '100%',
+                                                    height: '10rem',
+                                                    objectFit: 'contain'
+                                                }}
+                                                className="img-fluid"
+                                                src={item.url}
+                                                alt=""
+                                            />
+                                            <div className="product-overlay">
+                                                <a className="btn btn-lg-square btn-outline-light rounded-circle" href=""><i
+                                                    className="fa fa-eye text-primary"></i></a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6" data-aos="zoom-in-up">
-                            <div className="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
-                                <div className="text-center p-4">
-                                    <div className="d-inline-block border border-primary rounded-pill pt-1 px-3 mb-3">Rp. 15.000</div>
-                                    <h3 className="mb-3">Pedas</h3>
-                                    <span>Hadir untuk menggugah selera Anda dengan kepedasan yang pas</span>
-                                </div>
-                                <div className="position-relative mt-auto">
-                                    <img className="img-fluid" src={GP2} alt="" />
-                                    <div className="product-overlay">
-                                        <a className="btn btn-lg-square btn-outline-light rounded-circle" href=""><i
-                                            className="fa fa-eye text-primary"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            ))
+                        }
                     </div>
                 </div>
             </div>
