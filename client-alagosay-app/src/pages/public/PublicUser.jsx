@@ -18,14 +18,21 @@ import axios from 'axios';
 
 const App = () => {
     const [product, setProduct] = useState([])
+    const [carousel, setCarousel] = useState([])
 
     useEffect(() => {
         getProducts()
+        getCarousels()
     }, [])
 
     const getProducts = async () => {
         const response = await axios.get("http://localhost:3001/product")
         setProduct(response.data)
+    }
+
+    const getCarousels = async () => {
+        const response = await axios.get("http://localhost:3001/content")
+        setCarousel(response.data)
     }
 
     useEffect(() => {
@@ -102,32 +109,22 @@ const App = () => {
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 </div>
                 <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <img className="img-fluid img-c d-block w-100" src={GC_1} alt="" />
-                        <div className="carousel-caption">
-                            <p className="text-primary text-uppercase fw-bold mb-2">// Moring Kekinian</p>
-                            <h1 className="display-1 text-light mb-4 animated slideInDown">Buat Santaimu Lebih Asik</h1>
-                            <p className="text-light fs-5 mb-4 pb-3">
-                                Moring ini hadir sebagai cemilan yang menemanimu dikala lagi santai
-                            </p>
-                            <a href="https://wa.me/+6283896059029?text=Halo%20Tim%20Alagosay,%0D%0A%0D%0ASaya%20tertarik%20dengan%20produk%20dan%20ingin%20mengetahui%20lebih%20lanjut.%0D%0A%0D%0ATerima%20kasih.%0D%0A%0D%0ASalam,%0D%0ANama%20Anda"
-                                className="btn btn-primary rounded-pill py-3 px-5">Pesan Sekarang</a>
-                        </div>
-                    </div>
-                    <div className="carousel-item">
-                        <img className="img-fluid img-c d-block w-100" src={GC_2} alt="" />
-                        <div className="carousel-caption">
-                            <p className="text-primary text-uppercase fw-bold mb-2">// Camilan di segala kondisi</p>
-                            <h1 className="display-1 text-light mb-4 animated slideInDown text-shadow">Jadikan momen istimewa Anda
-                                lebih berkesan</h1>
-                            <p className="text-light fs-5 mb-4 pb-3">
-                                Dapatkan sensasi baru dengan Alagosay, camilan favorit para remaja, wanita, dan ibu
-                                rumah tangga
-                            </p>
-                            <a href="https://wa.me/+6283896059029?text=Halo%20Tim%20Alagosay,%0D%0A%0D%0ASaya%20tertarik%20dengan%20produk%20dan%20ingin%20mengetahui%20lebih%20lanjut.%0D%0A%0D%0ATerima%20kasih.%0D%0A%0D%0ASalam,%0D%0ANama%20Anda"
-                                className="btn btn-primary rounded-pill py-3 px-5">Pesan Sekarang</a>
-                        </div>
-                    </div>
+                    {
+                        carousel.map(carousel => (
+                            <div className="carousel-item active" key={carousel.id}>
+                                <img className="img-fluid img-c d-block w-100" src={carousel.url} alt="" />
+                                <div className="carousel-caption">
+                                    <p className="text-primary text-uppercase fw-bold mb-2">{carousel.tag_content}</p>
+                                    <h1 className="display-1 text-light mb-4 animated slideInDown">{carousel.title_content}</h1>
+                                    <p className="text-light fs-5 mb-4 pb-3">
+                                        {carousel.subtitle_content}
+                                    </p>
+                                    <a href="https://wa.me/+6283896059029?text=Halo%20Tim%20Alagosay,%0D%0A%0D%0ASaya%20tertarik%20dengan%20produk%20dan%20ingin%20mengetahui%20lebih%20lanjut.%0D%0A%0D%0ATerima%20kasih.%0D%0A%0D%0ASalam,%0D%0ANama%20Anda"
+                                        className="btn btn-primary rounded-pill py-3 px-5">Pesan Sekarang</a>
+                                </div>
+                            </div>
+                        ))
+                    }
                 </div>
 
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
