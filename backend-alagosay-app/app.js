@@ -8,6 +8,7 @@ import productRoute from "./routes/product.route.js";
 import cors from "cors"
 import fileUpload from "express-fileupload";
 import contentRoute from "./routes/content.route.js";
+import testimonyRoute from "./routes/testimony.route.js";
 
 const app = express()
 dotenv.config()
@@ -24,6 +25,7 @@ app.get('/', (req, res) => res.json({ msg: 'Selamat Datang Di Alagosay App' }))
 app.use('/auth', authRoute)
 app.use('/product', productRoute)
 app.use('/content', contentRoute)
+app.use('/testimony', testimonyRoute)
 app.use(errorHandler)
 
 const PORT = process.env.PORT || 3001

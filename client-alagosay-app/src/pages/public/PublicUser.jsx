@@ -12,6 +12,10 @@ import GC_1 from './img/carousel-1.jpg'
 import GC_2 from './img/carousel-2.jpg'
 import Ab1 from './img/about-1.jpg'
 import Ab2 from './img/about-2.jpg'
+import T1 from './img/testimonial-1.jpg'
+import T2 from './img/testimonial-2.jpg'
+import T3 from './img/testimonial-3.jpg'
+import T4 from './img/testimonial-4.jpg'
 import GP1 from './img/product-1.jpg'
 import GP2 from './img/product-2.jpg'
 import axios from 'axios';
@@ -19,10 +23,12 @@ import axios from 'axios';
 const App = () => {
     const [product, setProduct] = useState([])
     const [carousel, setCarousel] = useState([])
+    const [testimony, setTestimony] = useState([])
 
     useEffect(() => {
         getProducts()
         getCarousels()
+        getTestimonies()
     }, [])
 
     const getProducts = async () => {
@@ -33,6 +39,11 @@ const App = () => {
     const getCarousels = async () => {
         const response = await axios.get("http://localhost:3001/content")
         setCarousel(response.data)
+    }
+
+    const getTestimonies = async () => {
+        const response = await axios.get("http://localhost:3001/testimony")
+        setTestimony(response.data)
     }
 
     useEffect(() => {
@@ -89,7 +100,7 @@ const App = () => {
                     <h1 className="text-primary m-0 text-shadow">Alagosay</h1>
                 </a>
                 <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarCollapse">
-                    <div className="d-none d-lg-flex">
+                    <div className="d-none d-lg-flex p-3">
                         <div className="flex-shrink-0 btn-lg-square border border-light rounded-circle">
                             <i className="fa fa-phone text-primary"></i>
                         </div>
@@ -114,11 +125,13 @@ const App = () => {
                             <div className="carousel-item active" key={carousel.id}>
                                 <img className="img-fluid img-c d-block w-100" src={carousel.url} alt="" />
                                 <div className="carousel-caption">
-                                    <p className="text-primary text-uppercase fw-bold mb-2">{carousel.tag_content}</p>
-                                    <h1 className="display-1 text-light mb-4 animated slideInDown">{carousel.title_content}</h1>
-                                    <p className="text-light fs-5 mb-4 pb-3">
-                                        {carousel.subtitle_content}
-                                    </p>
+                                    <div className='mb-4' style={{ padding: '1rem 2rem 0', backgroundColor: 'rgba(0, 0, 0, 0)', borderRadius: '.3rem' }}>
+                                        <p className="text-light text-uppercase fw-bold mb-2" style={{ textShadow: '1px 1px 15px black' }}>{carousel.tag_content}</p>
+                                        <h1 className="display-1 text-light mb-4 animated slideInDown" style={{ textShadow: '1px 1px 15px black' }}>{carousel.title_content}</h1>
+                                        <p className="text-light fs-5 mb-4 pb-3" style={{ textShadow: '1px 1px 15px black' }}>
+                                            {carousel.subtitle_content}
+                                        </p>
+                                    </div>
                                     <a href="https://wa.me/+6283896059029?text=Halo%20Tim%20Alagosay,%0D%0A%0D%0ASaya%20tertarik%20dengan%20produk%20dan%20ingin%20mengetahui%20lebih%20lanjut.%0D%0A%0D%0ATerima%20kasih.%0D%0A%0D%0ASalam,%0D%0ANama%20Anda"
                                         className="btn btn-primary rounded-pill py-3 px-5">Pesan Sekarang</a>
                                 </div>
@@ -272,10 +285,10 @@ const App = () => {
                                                 src={item.url}
                                                 alt=""
                                             />
-                                            <div className="product-overlay">
+                                            {/* <div className="product-overlay">
                                                 <a className="btn btn-lg-square btn-outline-light rounded-circle" href=""><i
                                                     className="fa fa-eye text-primary"></i></a>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </div>
@@ -294,15 +307,50 @@ const App = () => {
                         <h1 className="display-6 mb-4">Telah di Review Positif oleh lebih dari 1000 orang</h1>
                     </div>
                     <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel">
-                        <div className="carousel-inner">
-                            {[
-                                { src: "img/testimonial-1.jpg", text: "Testimonial 1" },
-                                { src: "img/testimonial-2.jpg", text: "Testimonial 2" },
-                                { src: "img/testimonial-3.jpg", text: "Testimonial 3" },
-                                { src: "img/testimonial-4.jpg", text: "Testimonial 4" },
-                            ].map((testimonial, index) => (
-                                <div className={`carousel-item ${index === 0 ? "active" : ""}`} key={index}>
-                                    <img src={testimonial.src} className="d-block w-100" /><span>{testimonial.text}</span>
+                        <div className="carousel-inner d-flex">
+                            {testimony.map((testimonial, index) => (
+                                <div
+                                    className={`carousel-item ${index === 0 ? "active" : ""}`}
+                                    key={testimonial.id}
+                                    style={{
+                                        padding: '1rem 35%'
+                                    }}
+                                >
+                                    <div
+                                        style={{
+                                            padding: '1rem',
+                                            border: '1px solid rgb(194, 115, 12)',
+                                            borderRadius: '.3rem',
+                                            textAlign: 'center'
+                                        }}
+                                    >
+                                        <div
+                                            style={{
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                width: '100%'
+                                            }}
+                                        >
+                                            <img
+                                                src={testimonial.url}
+                                                style={{
+                                                    display: 'flex',
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    alignContent: 'center',
+                                                    justifyContent: 'center',
+                                                    textAlign: 'center'
+                                                }}
+                                                className="rounded d-block w-10"
+                                            />
+                                        </div>
+                                        <div className='d-flex justify-content-center pt-3'>
+                                            <div>
+                                                <h3 style={{ fontFamily: '"Poppins", sans-serif' }}>{testimonial.name_testimony}</h3>
+                                                <span className='text-center'>{testimonial.testimony}</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -395,7 +443,7 @@ const App = () => {
             {/* Footer End */}
 
             {/* Back to Top */}
-            <a href="#" className="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top">
+            <a href="#" className="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top d-flex justify-content-center align-items-center">
                 <i className="bi bi-arrow-up"></i></a>
 
         </div>

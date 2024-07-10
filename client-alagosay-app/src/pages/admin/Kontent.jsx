@@ -17,6 +17,7 @@ const Konten = () => {
     const [file, setFile] = useState("")
     const [preview, setPreview] = useState("")
     const [carousel, setCarousel] = useState([])
+    const [testimony, setTestimony] = useState([])
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -32,11 +33,17 @@ const Konten = () => {
 
     useEffect(() => {
         getCarousels()
+        getTestimonies()
     }, [])
 
     const getCarousels = async () => {
         const response = await axios.get("http://localhost:3001/content")
         setCarousel(response.data)
+    }
+
+    const getTestimonies = async () => {
+        const response = await axios.get("http://localhost:3001/testimony")
+        setTestimony(response.data)
     }
 
     const loadImageCarousel = (e) => {
@@ -99,6 +106,15 @@ const Konten = () => {
         }
     }
 
+    const deleteTestimony = async (testimonyId) => {
+        try {
+            await axios.delete(`http://localhost:3001/testimony/${testimonyId}`)
+            getTestimonies()
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <MainLayout>
             <section className="c7Nt m-3">
@@ -144,17 +160,17 @@ const Konten = () => {
 
                     <table className='table table-bordered'>
                         <tr className='bg-success text-light'>
-                            <td width={'40rem'}>NO</td>
-                            <td>Tag</td>
-                            <td>Title</td>
-                            <td>Subtitle</td>
-                            <td>Gambar</td>
-                            <td>Aksi</td>
+                            <td style={{ padding: '.5rem' }} width={'40rem'} align='center'>NO</td>
+                            <td align='center'>Tag</td>
+                            <td width={'200px'} align='center'>Title</td>
+                            <td align='center'>Subtitle</td>
+                            <td align='center'>Gambar</td>
+                            <td align='center'>Aksi</td>
                         </tr>
                         {
                             carousel.map((carousel, index) => (
                                 <tr key={carousel.id}>
-                                    <td>{index + 1}</td>
+                                    <td align='center'>{index + 1}</td>
                                     <td>{carousel.tag_content}</td>
                                     <td>{carousel.title_content}</td>
                                     <td>{carousel.subtitle_content}</td>
@@ -337,44 +353,37 @@ const Konten = () => {
 
                     <h3 className='d-flex justify-content-between mt-5'>Testimoni
                         <span>
-                            <button className='btn btn-success'>tambah</button>
+                            <Link to={'/4dm1n/konten/testimony/add'} className='btn btn-success'>Tambah Testimoni</Link>
                         </span>
                     </h3>
 
                     <table className='table table-bordered '>
                         <tr className='bg-success text-light'>
-                            <td>NO</td>
-                            <td>Testimoni</td>
-                            <td>Gambar</td>
-                            <td>Menu</td>
+                            <td style={{ padding: '.5rem' }} width={'40px'} align='center'>NO</td>
+                            <td width={'150px'} align='center'>Nama Testimoni</td>
+                            <td align='center'>Testimoni</td>
+                            <td align='center'>Gambar</td>
+                            <td align='center'>Aksi</td>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum error dolores unde sapiente minima laborum deserunt tempora, accusantium corporis vero asperiores voluptate distinctio eaque facilis sunt ullam quia pariatur alias.</td>
-                            <td>testimonial-1.jpg</td>
-                            <td>
-                                <span className='btn-group'>
-                                    <UpdateModal>
-                                        <form>
-                                            <div className="mb-3">
-                                                <label htmlFor="tag" className="form-label">Testimoni</label>
-                                                <input type="text" className="form-control" id="tag" />
-                                            </div>
-                                            <div className="mb-3">
-                                                <label htmlFor="gambar" className="form-label">gambar</label>
-                                                <input type="file" className="form-control" id="gambar" />
-                                            </div>
-                                            <div className="mb-3 form-check">
-                                                <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                                                <label className="form-check-label" htmlFor="exampleCheck1">Apakah anda Yakin</label>
-                                            </div>
-                                            <button type="submit" className="btn btn-primary">Submit</button>
-                                        </form>
-                                    </UpdateModal>
-                                    <button className='btn btn-danger'>Delete</button>
-                                </span>
-                            </td>
-                        </tr>
+                        {
+                            testimony.map((item, index) => (
+                                <tr>
+                                    <td align='center'>{index + 1}</td>
+                                    <td>{item.name_testimony}</td>
+                                    <td>{item.testimony}.</td>
+                                    <td className='d-flex justify-content-center align-items-center'>
+                                        <div style={{ width: '10rem', height: '10rem' }} className='d-flex justify-content-center align-items-center'>
+                                            <img src={item.url} alt={item.name_testimony} className='rounded' style={{ borderRadius: '.3rem', objectFit: 'contain' }} width={'100%'} height={'100%'} />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span className='btn-group'>
+                                            <a onClick={() => deleteTestimony(item.id)} className="col-3 mx-1 btn btn-danger">Delete</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))
+                        }
                     </table>
 
                 </div>

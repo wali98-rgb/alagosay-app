@@ -73,7 +73,7 @@ const UpdateProduct = () => {
                         <form onSubmit={updateProduct}>
                             {preview ? (
                                 <figure>
-                                    <img className="rounded mx-auto d-block" src={preview} alt="Preview Foto" />
+                                    <img style={{ width: '30%' }} className="rounded mx-auto d-block" src={preview} alt="Preview Foto" />
                                 </figure>
                             ) : (
                                 ""

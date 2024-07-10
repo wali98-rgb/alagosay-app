@@ -12,7 +12,7 @@ const Navbar = () => {
             </div>
 
             <div className="n42r-3xr">
-                <Link to><i className="bi bi-door-open"></i></Link>
+                <Link to={'/'}><i className="bi bi-door-open"></i></Link>
             </div>
         </nav>
     )

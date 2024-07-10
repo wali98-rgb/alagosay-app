@@ -10,6 +10,7 @@ import UpdateProduct from './pages/admin/produk/UpdateProduct'
 import ShowProduct from './pages/admin/produk/ShowProduct'
 import Kontak from './pages/admin/Kontak'
 import About from './pages/admin/About'
+import AddTestimony from './pages/admin/testimony/AddTestimony'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path='/4dm1n/product/edit/:id' element={<UpdateProduct />} />
         <Route path='/4dm1n/product/show/:id' element={<ShowProduct />} />
         <Route path='/4dm1n/konten' element={<Konten />} />
+        <Route path='/4dm1n/konten/testimony/add' element={<AddTestimony />} />
         <Route path='/4dm1n/Kontak' element={<Kontak />} />
         <Route path='/4dm1n/About' element={<About />} />
       </Routes>
